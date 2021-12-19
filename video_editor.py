@@ -1,6 +1,4 @@
 # Import everything needed to edit video clips
-from typing import Concatenate
-
 from moviepy.editor import concatenate_videoclips
 from moviepy.editor import VideoFileClip
 from rich.traceback import install as ad_fancy_traceback
