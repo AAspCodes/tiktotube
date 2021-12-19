@@ -3,9 +3,9 @@ from typing import Concatenate
 
 from moviepy.editor import concatenate_videoclips
 from moviepy.editor import VideoFileClip
-from rich.traceback import install
+from rich.traceback import install as ad_fancy_traceback
 
-install()
+ad_fancy_traceback()
 
 # Load myHolidays.mp4 and select the subclip 00:00:50 - 00:00:60
 clip = VideoFileClip("sample-mp4-file.mp4").subclip(10, 20)

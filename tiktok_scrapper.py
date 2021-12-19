@@ -1,5 +1,5 @@
 # Import webdriver manager
-from rich.traceback import install
+from rich.traceback import install as ad_fancy_traceback
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -10,9 +10,7 @@ from selenium.webdriver.support.expected_conditions import (
 from selenium.webdriver.support.ui import WebDriverWait
 from webdriver_manager.firefox import GeckoDriverManager
 
-# from selenium import webdriver
-
-install()
+ad_fancy_traceback()
 
 # Use the `install()` method to set `executabe_path` in a new `Service` instance:
 # check for more info https://www.selenium.dev/documentation/webdriver/getting_started/install_drivers/
