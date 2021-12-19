@@ -1,3 +1,4 @@
 .python-version
 .vscode/settings.json
 geckodriver.log
+.vscode/tasks.json
