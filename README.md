@@ -19,3 +19,8 @@ boom, final video...
 stretch goals:
 youtube api that allows auto upload?
 better control over which kind of videos get downloaded from tiktok.(different catagories etc)
+
+
+
+TODO:
+The main challenge of this project implementing tiktok_scrapper.py and the use of selenium.
