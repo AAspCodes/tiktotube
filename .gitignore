@@ -3,4 +3,6 @@
 geckodriver.log
 .vscode/tasks.json
 api_output.json
+env/
+launch.json
 *.mp4
