@@ -25,7 +25,7 @@ def get_download_url(video_dict):
 
 
 def filter_download_urls(video_dicts):
-    return [get_download_url(video_dict) for video_dict in video_dicts]
+    return map(get_download_url, video_dicts)
 
 
 def download_videos(api, urls):
