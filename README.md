@@ -6,16 +6,18 @@
 ### How it works:
 
 - unofficial tiktok api to get urls of desired videos
-- grabs the urls of the desired videos
-- selenium webdriver opens https://snaptik.app/en (snaptik, is a site for downloading tiktok videos)
-- for each video:
-    - enter tiktok video url into snap tik, and click download
-    - download the video
+- Grab the urls of the desired videos
+- Selenium webdriver opens https://snaptik.app/en (snaptik, is a site for downloading tiktok videos)
+- For each video:
+    - Enter tiktok video url into snap tik, and click download
+    - Download the video
 
 
-- run video_editor.py script to concatenate all videos
+- Run video_editor.py script to concatenate all videos
 
-- boom, final video...
+- Boom!!, final video
+- ...
+- profit!!
 
 
 
