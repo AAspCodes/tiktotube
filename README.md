@@ -35,3 +35,9 @@
 
 
 ---
+
+
+### setting up tikok Api
+https://github.com/davidteather/tiktok-api
+
+also he kinda already did what we are doing ...
