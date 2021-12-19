@@ -1,5 +1,5 @@
 # A Tiktok to Youtube Pipeline Project
-Yurii this project is using python 3.10.0 btw
+===Yurii this project is using python 3.10.0 btw===
 
 ### How it works:
 
