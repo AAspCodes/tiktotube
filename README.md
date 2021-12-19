@@ -1,7 +1,5 @@
 A Tiktok to Youtube Pipeline Project
 
-
-
 How it works:
 
 selenium webdriver opens tiktok.com in firefox
