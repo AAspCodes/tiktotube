@@ -20,6 +20,7 @@ service = Service(executable_path=GeckoDriverManager().install())
 
 
 #This example requires Selenium WebDriver 3.13 or newer
+desired_video_urls = []
 with webdriver.Firefox(service=service) as driver:
     wait = WebDriverWait(driver, 10)
     driver.get("https://www.tiktok.com/")
