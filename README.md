@@ -32,6 +32,8 @@
 - The main challenge of this project implementing tiktok_scrapper.py and the use of selenium.
 
 - [ ] a better way to manage our enviroments beyond a requirements.txt file
+- [ ] figure out why the final video doesn't seem to have sound
+- [ ] find a better way to general the os and path calls so it works on both of our operating systems. we could use docker if we feel extra lol
 
 
 ---
