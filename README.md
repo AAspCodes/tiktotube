@@ -5,7 +5,7 @@
 
 ### How it works:
 
-- selenium webdriver opens tiktok.com in firefox
+- selenium webdriver opens tiktok.com in firefox(could also be modified to run in chrome)
 - grabs the urls of the desired videos
 - selenium webdriver opens https://snaptik.app/en (snaptik, is a site for downloading tiktok videos)
 - for each video:
