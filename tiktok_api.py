@@ -5,6 +5,8 @@ from TikTokApi import TikTokApi
 
 ad_fancy_traceback()
 
+
+## you will likely need to replace this with your own see article : https://blog.devgenius.io/tiktok-api-python-41d76c67a833
 verifyFp = "verify_kxcmt49v_Mh9GhNFs_4RiC_4yVp_B1l7_X6ChWQQ5Qn5q"
 
 
