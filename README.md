@@ -5,7 +5,7 @@
 
 ### How it works:
 
-- unofficial tiktok api to get urls of desired videos
+- unofficial tiktok api to get urls of desired videos: https://blog.devgenius.io/tiktok-api-python-41d76c67a833
 - Grab the urls of the desired videos
 - Selenium webdriver opens https://snaptik.app/en (snaptik, is a site for downloading tiktok videos)
 - For each video:
