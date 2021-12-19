@@ -15,6 +15,7 @@ cryptography==36.0.1
 decorator==4.4.2
 distlib==0.3.4
 filelock==3.4.0
+greenlet==1.1.2
 h11==0.12.0
 identify==2.4.0
 idna==3.3
@@ -28,18 +29,21 @@ outcome==1.1.0
 pathspec==0.9.0
 Pillow==8.4.0
 platformdirs==2.4.0
+playwright==1.17.2
 pre-commit==2.16.0
 proglog==0.1.9
 pycparser==2.21
+pyee==8.2.2
 Pygments==2.10.0
 pyOpenSSL==21.0.0
 PyYAML==6.0
 requests==2.26.0
 rich==10.16.1
-selenium==4.1.0
+selenium-stealth==1.0.6
 six==1.16.0
 sniffio==1.2.0
 sortedcontainers==2.4.0
+TikTokApi==4.1.0
 toml==0.10.2
 tomli==1.2.3
 tqdm==4.62.3
@@ -49,4 +53,5 @@ typing_extensions==4.0.1
 urllib3==1.26.7
 virtualenv==20.10.0
 webdriver-manager==3.5.2
+websockets==10.1
 wsproto==1.0.0
