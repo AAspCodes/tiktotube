@@ -17,7 +17,7 @@ def get_video_dicts():
 
 def log_video_dicts(video_dicts, path="api_output.json"):
     with open("api_output.json", "w") as f:
-        f.write(json.dumps(video_dicts))
+        f.write(json.dumps(video_dicts, indent=4))
 
 
 def get_download_url(video_dict):
