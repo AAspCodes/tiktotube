@@ -12,8 +12,7 @@ PATH_TO_DOWNLOADED_VIDEOS = "./downloaded_videos/"
 def get_video_paths():
     ## Yurii you may need to modfy something do work on windows
     videos = os.listdir(PATH_TO_DOWNLOADED_VIDEOS)
-    video_paths = [PATH_TO_DOWNLOADED_VIDEOS + vid for vid in videos]
-    return video_paths
+    return (PATH_TO_DOWNLOADED_VIDEOS + vid for vid in videos)
 
 
 def concatenate_videos(video_paths):
