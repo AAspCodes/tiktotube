@@ -13,24 +13,22 @@
 - ...
 - profit!!
 
-------------------------------------------------------------------------------------------
+---
+
+### TODO:
+
+- [ ] a better way to manage our enviroments beyond a requirements.txt file
+- [ ] figure out why the final video doesn't seem to have sound
+- [ ] find a better way to general the os and path calls so it works on both of our operating systems. we could use docker if we feel extra lol
+- [ ] should add comments to tiktok_api.py
+- [ ] make a "main.py" or something to run both scripts from
+
+---
+
 ### Stretch Goals:
 - youtube api that allows auto upload?
 - better control over which kind of videos get downloaded from tiktok.(different catagories etc)
 
 ---
-### TODO:
-- The main challenge of this project implementing tiktok_scrapper.py and the use of selenium.
-
-- [ ] a better way to manage our enviroments beyond a requirements.txt file
-- [ ] figure out why the final video doesn't seem to have sound
-- [ ] find a better way to general the os and path calls so it works on both of our operating systems. we could use docker if we feel extra lol
-
-
----
-
-
 ### setting up tikok Api
 https://github.com/davidteather/tiktok-api
-
-also he kinda already did what we are doing ...
