@@ -1,5 +1,7 @@
 # A Tiktok to Youtube Pipeline Project
-===Yurii this project is using python 3.10.0 btw===
+>Yurii this project is using python 3.10.0 btw
+
+>if you are in favor please autoformat with Black
 
 ### How it works:
 
@@ -27,6 +29,4 @@
 ### TODO:
 - The main challenge of this project implementing tiktok_scrapper.py and the use of selenium.
 
-- [ ]
-- [ ]
-- [ ]
+- [ ] a better way to manage our enviroments beyond a requirements.txt file
