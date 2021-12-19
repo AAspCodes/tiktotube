@@ -5,17 +5,19 @@
 
 ### How it works:
 
-- selenium webdriver opens tiktok.com in firefox(could also be modified to run in chrome)
-- grabs the urls of the desired videos
-- selenium webdriver opens https://snaptik.app/en (snaptik, is a site for downloading tiktok videos)
-- for each video:
-    - enter tiktok video url into snap tik, and click download
-    - download the video
+- Selenium webdriver opens tiktok.com in firefox(could also be modified to run in chrome)
+- Grab the urls of the desired videos
+- Selenium webdriver opens https://snaptik.app/en (snaptik, is a site for downloading tiktok videos)
+- For each video:
+    - Enter tiktok video url into snap tik, and click download
+    - Download the video
 
 
-- run video_editor.py script to concatenate all videos
+- Run video_editor.py script to concatenate all videos
 
-- boom, final video...
+- Boom!!, final video
+- ... 
+- profit!!
 
 
 
@@ -29,4 +31,7 @@
 ### TODO:
 - The main challenge of this project implementing tiktok_scrapper.py and the use of selenium.
 
-- [ ] a better way to manage our enviroments beyond a requirements.txt file
+- [ ] Perhaps Find a better way to manage our enviroments beyond just a requirements.txt file
+- [ ] Implement getting desired video urls from tiktok.com
+- [ ] Implement entering urls to Snaptik and downloading videos
+- [ ] connecting video concat to run after tiktok scrapper
