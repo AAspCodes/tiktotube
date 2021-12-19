@@ -2,3 +2,4 @@
 .vscode/settings.json
 geckodriver.log
 .vscode/tasks.json
+api_output.json
