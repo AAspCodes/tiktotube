@@ -42,8 +42,19 @@ if [[ $# == 1 ]]; then
     esac
 fi
 
+
+# for Yurri
+# something like this i assume
+# virtualev activate
+# python main.py $hastag_source
+# deactivate
+
+# for anthony
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
 pyenv activate tiktotube
-python main.py $1
+python main.py $hashtag_source
 pyenv deactivate
-echo $hashtag_source
-echo "done"
+
+
+echo "shell script is completed done"
