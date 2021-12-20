@@ -6,3 +6,5 @@ api_output.json
 *.mp4
 __pycache__/tiktok_api.cpython-310.pyc
 __pycache__/video_editor.cpython-310.pyc
+.vscode/launch.json
+.DS_Store
