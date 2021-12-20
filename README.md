@@ -4,8 +4,8 @@
 >if you are in favor please autoformat with Black
 
 ### How it works:
-
-- unofficial tiktok api to get urls of desired videos: https://blog.devgenius.io/tiktok-api-python-41d76c67a833
+- run tiktotube.sh script
+- use unofficial tiktok api to get urls of desired videos: https://blog.devgenius.io/tiktok-api-python-41d76c67a833
 - Grab the urls of the desired videos
 - use the api to download the videos from their download urls
 - Run video_editor.py script to concatenate all videos
@@ -17,11 +17,10 @@
 
 ### TODO:
 
-- [ ] a better way to manage our enviroments beyond a requirements.txt file
 - [ ] figure out why the final video doesn't seem to have sound
 - [ ] find a better way to general the os and path calls so it works on both of our operating systems. we could use docker if we feel extra lol
 - [ ] should add comments to tiktok_api.py
-- [ ] make a "main.py" or something to run both scripts from
+- [x] make a "main.py" or something to run both scripts from
 
 ---
 
