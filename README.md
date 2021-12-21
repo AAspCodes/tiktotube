@@ -17,7 +17,7 @@
 
 ### TODO:
 
-- [ ] figure out why the final video doesn't seem to have sound
+- [x] figure out why the final video doesn't seem to have sound
 - [ ] find a better way to general the os and path calls so it works on both of our operating systems. we could use docker if we feel extra lol
 - [ ] should add comments to tiktok_api.py
 - [x] make a "main.py" or something to run both scripts from
