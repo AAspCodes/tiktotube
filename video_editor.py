@@ -23,7 +23,7 @@ def concatenate_videos(video_paths):
     video = concatenate_videoclips(clips)
 
     # Write the result to a file (many options available !)
-    video.write_videofile("final_video.mp4")
+    video.write_videofile("final_video.mp4", audio_codec="aac")
 
 
 def delete_old_videos():
