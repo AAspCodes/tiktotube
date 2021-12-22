@@ -38,7 +38,7 @@ class VideoEditor:
         vids = os.listdir(self.path_to_dloaded_vids)
         return (os.path.join(self.path_to_dloaded_vids, vid) for vid in vids)
 
-    def load_videos(self, vid_paths: Generator) -> list:
+    def load_videos(self, vid_paths: Generator) -> List:
         return [VideoFileClip(vid, target_resolution=(1440, 810)) for vid in vid_paths]
 
     def add_background_image(self, video: VideoClip) -> CompositeVideoClip:
