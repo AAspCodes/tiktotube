@@ -42,19 +42,30 @@ if [[ $# == 1 ]]; then
     esac
 fi
 
+# I'm not sure which is appropriate for you system.
+# you can find by uncommenting the followling line
+# echo $OSTYPE
 
-# for Yurri
-# something like this i assume
-# virtualev activate
-# python main.py $hastag_source
-# deactivate
+# here is the link the where I found this.
+## https://stackoverflow.com/questions/394230/how-to-detect-the-os-from-a-bash-script/18434831
 
-# for anthony
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
-pyenv activate tiktotube
-python main.py $hashtag_source
-pyenv deactivate
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    # macOS
+    eval "$(pyenv init -)"
+    eval "$(pyenv virtualenv-init -)"
+    pyenv activate tiktotube
+    python main.py $hashtag_source
+    pyenv deactivate
 
+#elif [[ $"OSTYPE" == "mysys" ]]; then
+    # for Yurii
+    # something like this i assume
+    # virtualev activate
+    # python main.py $hastag_source
+    # deactivate
+else
+    echo "OS Type not recognized"
+    return
+fi
 
-echo "shell script is completed done"
+echo "tiktoktube.sh is done"
