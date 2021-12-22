@@ -64,7 +64,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     # python main.py $hastag_source
     # deactivate
 else
-    echo "OS Type not recognized"
+    echo "OS Type not recognized will not run"
     return
 fi
 
