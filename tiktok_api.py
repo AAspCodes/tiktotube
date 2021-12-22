@@ -60,7 +60,7 @@ def get_video_dicts():
 
 def log_video_dicts(video_dicts, path="api_output.json"):
     with open("api_output.json", "w") as f:
-        f.write(json.dumps(video_dicts))
+        f.write(json.dumps(video_dicts, indent=4))
 
 
 def get_download_url(video_dict):
@@ -71,7 +71,7 @@ def get_tag(video_dict):
     return video_dict["video"]["downloadAddr"]
 
 def filter_download_urls(video_dicts):
-    return [get_download_url(video_dict) for video_dict in video_dicts]
+    return map(get_download_url, video_dicts)
 
 def filter_tags(video_dicts):
     return [get_download_url(video_dict) for video_dict in video_dicts]
