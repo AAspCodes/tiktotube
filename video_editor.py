@@ -26,8 +26,8 @@ class VideoEditor:
 
     def get_video_paths(self):
         ## Yurii you may need to modfy something do work on windows
-        videos = os.listdir(self.path_to_dloaded_vids)
-        return (os.path.join(self.path_to_dloaded_vids, vid) for vid in videos)
+        vids = os.listdir(self.path_to_dloaded_vids)
+        return (os.path.join(self.path_to_dloaded_vids, vid) for vid in vids)
 
     def concatenate_videos(self, vid_paths):
         # Load videos
