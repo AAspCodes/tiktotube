@@ -10,7 +10,7 @@ if len(sys.argv) != 2:
 
 hashtag_source = sys.argv[1]
 # This is intended simply as a place holder
-# and should be modified to fit with how Yurri decideds to implement tiktok_api.py
+# and should be modified to fit with how Yurii decideds to implement tiktok_api.py
 if hashtag_source == "tiktok":
     print("running with tikok arg")
     # tiktok_api.tiktokrun()
