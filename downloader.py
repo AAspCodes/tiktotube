@@ -1,4 +1,6 @@
 import os
+from typing import Dict
+from typing import List
 
 
 class Downloader:
@@ -12,7 +14,7 @@ class Downloader:
         self.video_prefix = video_prefix
         self.api = api
 
-    def download_all(self, vid_dicts: list) -> None:
+    def download_all(self, vid_dicts: List) -> None:
         self.check_for_dir()
 
         # loop through and get just the dload addrs
@@ -25,7 +27,7 @@ class Downloader:
     def _download(self, dload_url: str) -> bytes:
         return self.api.get_video_by_download_url(dload_url)
 
-    def write_video(self, video_bytes, path) -> None:
+    def write_video(self, video_bytes: bytes, path: str) -> None:
         with open(path, "wb") as f:
             f.write(video_bytes)
 
@@ -34,7 +36,7 @@ class Downloader:
             self.path_dloaded_vids, self.video_prefix + str(index) + ".mp4"
         )
 
-    def get_dload_url(self, vid_dict: dict) -> str:
+    def get_dload_url(self, vid_dict: Dict) -> str:
         return vid_dict["video"]["downloadAddr"]
 
     def check_for_dir(self) -> None:
@@ -49,4 +51,5 @@ if __name__ == "__main__":
     verifyFp = "verify_kxi0g713_fTOHLX63_ZzzR_4SPu_Alxi_Qvaiyt0sic7U"
     api = TikTokApi.get_instance(custom_verifyFp=verifyFp)
     vid_dicts = api.by_hashtag(hashtag="fun", count=2)
+    vid_dicts = api.by_hashtag(hashtag="fyp", count=3)
     Downloader(api).download_all(vid_dicts)
