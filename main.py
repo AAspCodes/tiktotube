@@ -22,7 +22,7 @@ else:
     print('arg should have "tiktok" or "google", the shell script screwed up')
     pass
 
-## temp until api has interface built
+## temp until tiktok_api has interface built
 tiktok_api.run()
 video_editor.run()
 
