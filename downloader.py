@@ -12,18 +12,30 @@ class Downloader:
         self.video_prefix = video_prefix
         self.api = api
 
-    def download_all(self, vid_dicts):
+    def download_all(self, vid_dicts: list):
         self.check_for_dir()
 
         # loop through and get just the dload addrs
         for index, vid_dict in enumerate(vid_dicts):
-            dload_url = vid_dict["video"]["downloadAddr"]
-            video_bytes = self.api.get_video_by_download_url(dload_url)
-            with open(
-                os.path.join(self.path_dloaded_vids, f"saved_video{index}.mp4"),
-                "wb",
-            ) as f:
-                f.write(video_bytes)
+            dload_url = self.get_dload_url(vid_dict)
+            video_bytes = self._download(dload_url)
+            path = self.compute_path(index)
+            self.write_video(video_bytes, path)
+
+    def _download(self, dload_url):
+        return self.api.get_video_by_download_url(dload_url)
+
+    def write_video(self, video_bytes, path):
+        with open(path, "wb") as f:
+            f.write(video_bytes)
+
+    def compute_path(self, index):
+        return os.path.join(
+            self.path_dloaded_vids, self.video_prefix + str(index) + ".mp4"
+        )
+
+    def get_dload_url(self, vid_dict: dict):
+        return vid_dict["video"]["downloadAddr"]
 
     def check_for_dir(self):
         # if directory DNE, make one
