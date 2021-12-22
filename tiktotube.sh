@@ -57,6 +57,10 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     python main.py $hashtag_source
     pyenv deactivate
 
+# elif [[ "$OSTYPE" == "linux"]]; then
+    ## for Docker to be
+    # do set up and run
+
 #elif [[ $"OSTYPE" == "mysys" ]]; then
     # for Yurii
     # something like this i assume
