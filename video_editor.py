@@ -35,7 +35,7 @@ class VideoEditor:
         clips = [VideoFileClip(vid) for vid in vid_paths]
 
         # concatenate video clips
-        video = concatenate_videoclips(clips)
+        video = concatenate_videoclips(clips, method="compose")
 
         # Write the result to a file
         video.write_videofile(self.output_vid_name, audio_codec="aac")
