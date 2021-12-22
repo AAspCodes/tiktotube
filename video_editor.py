@@ -1,4 +1,3 @@
-# Import everything needed to edit video clips
 import os
 
 from moviepy.editor import concatenate_videoclips
