@@ -1,7 +1,8 @@
 # A Tiktok to Youtube Pipeline Project
 >Yurii this project is using python 3.10.0 btw
 
->if you are in favor please autoformat with Black
+>if you are in favor please autoformat with
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
 ### How it works:
 - run tiktotube.sh script
