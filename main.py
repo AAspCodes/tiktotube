@@ -1,7 +1,7 @@
 import sys
 
 import tiktok_api
-import video_editor
+from video_editor import VideoEditor
 
 if len(sys.argv) != 2:
     print('Should have 2 args, ["main.py", "<arg>"]')
@@ -23,8 +23,8 @@ else:
     print('arg should have "tiktok" or "google", the shell script screwed up')
     pass
 
-## temp until tiktok_api,py has interface built
+# temp until tiktok_api.py has interface built
 tiktok_api.run()
-video_editor.run()
+VideoEditor().edit()
 
 exit(0)
