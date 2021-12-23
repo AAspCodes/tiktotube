@@ -5,6 +5,7 @@ import re
 
 from rich.traceback import install as ad_fancy_traceback
 from TikTokApi import TikTokApi
+from downloader import Downloader
 
 ad_fancy_traceback()
 
@@ -19,8 +20,6 @@ class Tiktube:
 
         # Used to interact with TikTok
         self.api = TikTokApi.get_instance(custom_verifyFp=verifyFp)
-        # Class for tiktoks downloading
-        self.downloader = Downloader(self.api)
         # Invalid hashtags are needed for filtering
         with open('invalid_hashtags.json') as json_file:
             self.invalid_hashtags = set(json.load(json_file)["hashtags"])
@@ -31,11 +30,6 @@ class Tiktube:
         self.min_view_count = min_view_count
         self.min_video_count = min_video_count
 
-    def __del__(self) -> None:
-        '''Desctuctor.'''
-        # Save updated used_tiktoks dict to a json file
-        with open("used_tiktoks.json", "w") as outfile:
-            json.dump(self.used_tiktoks, outfile)
 
     def get_hashtags(self, string: str) -> List:
         '''Searches for hashtags in the passed string.
@@ -89,7 +83,8 @@ class Tiktube:
         try:
             hashtag_object = self.api.get_hashtag_object(hashtag[1:])
             return hashtag_object['challengeInfo']['stats']
-        except TikTokApi.exceptions.GenericTikTokError:
+        # TODO narrow the exception, the exceptions in the TikTokApi docs do not work.
+        except Exception:
             # If tiktoks with the specified hashtags were not found, send a dict with stats that contain 0s.
             return {'videoCount': 0, 'viewCount': 0}
 
@@ -104,7 +99,7 @@ class Tiktube:
         hashtag_stats = self.get_tiktok_stats_by_hashtag(hashtag)
         return hashtag_stats['videoCount']>=self.min_video_count and hashtag_stats['viewCount']>=self.min_view_count
 
-    def get_tiktoks_by_tags(self, hashtags: List, max_compilation_duration_seconds: int) -> Dict:
+    def get_tiktoks_by_tags(self, hashtags: List, max_compilation_duration_seconds: int) -> List:
         '''
         Arguments:
 
@@ -118,12 +113,19 @@ class Tiktube:
         while total_duration_seconds < max_compilation_duration_seconds:
             # TODO consider adding multithreading
             for hashtag in hashtags:
-                video = self.api.by_hashtag(hashtag,count=1,offset=offset)
+                # TODO Fix this. I am not sure why, but it throws an exception that tag does not exist 
+                # although it passed the popularity test, and if you run the function again it find videos with this tag.
+                while True:
+                    try:
+                        video = self.api.by_hashtag(hashtag[1:],count=1,offset=offset)[0]
+                        break
+                    except Exception:
+                        continue 
 
                 # If video has already been used in a compilation, skip it
                 if video['id'] not in self.used_tiktoks:
                     # Save used tiktok in format tiktok_id:tiktok_tags
-                    self.used_tiktoks[video[id]] = self.get_hashtags(video['desc'])
+                    self.used_tiktoks[video['id']] = self.get_hashtags(video['desc'])
                     # Add tiktok to video_list which will be returned
                     videos_list.append(video)
                     # Update the length of the compilation
@@ -131,68 +133,69 @@ class Tiktube:
                     # Increment offset to fetch a new tiktok next iteration
                     offset+=1
 
+        return videos_list
 
-
-
-
+    
+    def get_trending_hashtags(self) -> List:
+        '''Searches for hashtags in trending tiktoks.
+            
+            Returns a list with trending tiktoks, or an empty string if there is no appropriate hashtags in first 500 trending videos.'''
+        # Get 100 trending tiktoks
+        videos = self.get_trending_tiktoks(100)
+        for video in videos:
+            video_description = video['desc']
+            video_hashtags = self.get_hashtags(video_description)
+            filtered_hashtags = []
+            # if the description contains at least one tag
+            if video_hashtags:
+                for hashtag in video_hashtags:
+                    if self.is_hashtag_valid(hashtag) and self.is_hashtag_popular(hashtag):
+                        filtered_hashtags.append(hashtag)
+                # If there is at least one hashtag left after filtering
+                if filtered_hashtags:
+                    return filtered_hashtags
+        # If there is no tags in 100 trending videos, return an empty list
+        return []
 
 
     
+    def download_tiktoks(self, max_compilation_duration_seconds: int,
+                            hashtags_list: List=[],
+                            path_to_dloaded_vids: str="downloaded_videos",
+                            video_prefix: str="saved_video" ) -> None:
+        '''Download tiktoks basing on the passed hashtags to a specified directory.
+            If no hashtags were passed, it looks for trending hashtags and downloads videos
+            with max_compilation_duration_seconds basing on those tags.'''
+        # TODO Edit description of function.
+        # if the user did not pass any hashtags
+        if not hashtags_list:
+            # Find trending hashtags
+            hashtags_list = self.get_trending_hashtags()
+
+        
+        # Class for tiktoks downloading
+        # TODO change downloader code to create a subdir for hashtags
+        # Subdir has to be names as hashtags, not video_prefix
+        self.downloader = Downloader(self.api,path_to_dloaded_vids,video_prefix=''.join(hashtags_list))
+        # Get tiktoks basing on hashtags
+        video_dicts = self.get_tiktoks_by_tags(hashtags_list,max_compilation_duration_seconds)
+        if video_dicts:
+            # Download those tiktoks
+            self.downloader.download_all(video_dicts)
+            # Save updated used_tiktoks dict to a json file
+            with open("used_tiktoks.json", "w") as outfile:
+                json.dump(self.used_tiktoks, outfile)
+        else:
+            print('No TikToks were found with those tags.')
+            
 
 
-'''
-def get_video_dicts():
-    api = TikTokApi.get_instance(custom_verifyFp=verifyFp)
-    return api, api.by_trending(count=2)
 
-
-def log_video_dicts(video_dicts, path="api_output.json"):
-    with open("api_output.json", "w") as f:
-        f.write(json.dumps(video_dicts, indent=4))
-
-
-def get_download_url(video_dict):
-    return video_dict["video"]["downloadAddr"]
-
-
-def get_tag(video_dict):
-    return video_dict["video"]["downloadAddr"]
-
-def filter_download_urls(video_dicts):
-    return map(get_download_url, video_dicts)
-
-def filter_tags(video_dicts):
-    return [get_download_url(video_dict) for video_dict in video_dicts]
-
-
-def download_videos(api, urls,save_path='downloaded_videos'):
-    if not os.path.isdir(save_path):
-        os.mkdir(save_path)
-    for index, download_url in enumerate(urls):
-        video_bytes = api.get_video_by_download_url(download_url)
-        # Create a save dir if there is not one
-        with open(os.path.join(save_path,f"saved_video{index}.mp4"), "wb") as f:
-            f.write(video_bytes)
-'''
 
 if __name__ == "__main__":
     #Has to be updated everytime to fetch new data from TikTok
     #TODO make the process of update automatic
     verifyFp = "verify_kxdoktdi_4f9WkyIC_IlKW_4ucX_89jY_j3EaD4Z4uA80"
-    tiktube = Tiktube(verifyFp,min_video_count=100,min_view_count=25000)
-    # Find 1000 tiktoks and save their hashtags in a json file.
-    video_dict = tiktube.get_trending_tiktoks(1000)
-    dict = {'hashtags':[]}
-    for video in video_dict:
-        hashtags_list = tiktube.get_hashtags(video['desc'])
-        if hashtags_list:
-            dict['hashtags'].extend(hashtags_list)
-
-    dict['hashtags'] = list(set(dict['hashtags']))
-    with open("hashtags.json", "w") as outfile:
-        json.dump(dict, outfile)
-
-    #api, video_dicts = get_video_dicts()
-    #log_video_dicts(video_dicts)
-    #urls = filter_download_urls(video_dicts)
-    #download_videos(api, urls)
+    tiktube = Tiktube(verifyFp,min_video_count=2069,min_view_count=3800000)
+    tiktube.download_tiktoks(max_compilation_duration_seconds=180)
+   
