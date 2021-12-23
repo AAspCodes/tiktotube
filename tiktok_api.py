@@ -19,6 +19,8 @@ class Tiktube:
 
         # Used to interact with TikTok
         self.api = TikTokApi.get_instance(custom_verifyFp=verifyFp)
+        # Class for tiktoks downloading
+        self.downloader = Downloader(self.api)
         # Invalid hashtags are needed for filtering
         with open('invalid_hashtags.json') as json_file:
             self.invalid_hashtags = set(json.load(json_file)["hashtags"])
