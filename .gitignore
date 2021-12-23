@@ -10,3 +10,4 @@ __pycache__/tiktok_api.cpython-310.pyc
 __pycache__/video_editor.cpython-310.pyc
 .vscode/launch.json
 .DS_Store
+*.pyc
