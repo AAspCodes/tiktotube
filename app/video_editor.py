@@ -1,5 +1,6 @@
 import os
 from typing import Generator
+from typing import List
 
 from moviepy.editor import CompositeVideoClip
 from moviepy.editor import concatenate_videoclips
@@ -17,7 +18,7 @@ class VideoEditor:
         keep_old_vids=True,
         output_vid_name="final_video.mp4",
         path_to_dloaded_vids="downloaded_videos",
-        path_to_background_image="background_image.jpg",
+        path_to_background_image=os.path.join("assets", "background_image.jpg"),
     ) -> None:
         self.keep_old_vids = keep_old_vids
         self.output_vid_name = output_vid_name

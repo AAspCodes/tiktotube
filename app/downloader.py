@@ -50,6 +50,5 @@ if __name__ == "__main__":
 
     verifyFp = "verify_kxi0g713_fTOHLX63_ZzzR_4SPu_Alxi_Qvaiyt0sic7U"
     api = TikTokApi.get_instance(custom_verifyFp=verifyFp)
-    vid_dicts = api.by_hashtag(hashtag="fun", count=2)
     vid_dicts = api.by_hashtag(hashtag="fyp", count=3)
     Downloader(api).download_all(vid_dicts)
