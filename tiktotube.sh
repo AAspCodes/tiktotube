@@ -1,46 +1,47 @@
 #!/bin/bash
 
-echo_help() {
-    echo "tiktotube 0.0.1"
-    echo "Usage: source tiktotube.sh [<args>]"
-    echo ""
-    echo "tiktok    (default) to use tiktok trending to get hashtags for outputing videos."
-    echo "google    use google trends to get hashtags for outputing videos."
-    echo "-h        to get this help message"
-    echo ""
-    echo "For full documentation see: https://github.com/AAspCodes/tiktotube#readme"
-}
+# echo_help() {
+#     echo "tiktotube 0.0.1"
+#    # echo "Usage: source tiktotube.sh [<args>]"
+#     echo "Usage: source tiktotube.sh"
+#     echo ""
+#     # echo "tiktok    (default) to use tiktok trending to get hashtags for outputing videos."
+#     # echo "google    use google trends to get hashtags for outputing videos."
+#     # echo "-h        to get this help message"
+#     # echo ""
+#     echo "For full documentation see: https://github.com/AAspCodes/tiktotube#readme"
+# }
 
-if [[ $# -gt 1 ]]; then
-    echo "Too many arguements"
-    echo_help
-    return
-fi
+# if [[ $# -gt 1 ]]; then
+#     echo "Too many arguements"
+#     echo_help
+#     return
+# fi
 
-hashtag_source="tiktok"
+# hashtag_source="tiktok"
 
-if [[ $# == 1 ]]; then
-    case $1 in
+# if [[ $# == 1 ]]; then
+#     case $1 in
 
-    "-h")
-        echo_help
-        return
-        ;;
+#     "-h")
+#         echo_help
+#         return
+#         ;;
 
-    "tiktok")
-        ;;
+#     "tiktok")
+#         ;;
 
-    "google")
-        hashtag_source="google"
-        ;;
+#     "google")
+#         hashtag_source="google"
+#         ;;
 
-    *)
-        echo "invalid arguement"
-        echo_help
-        return
-        ;;
-    esac
-fi
+#     *)
+#         echo "invalid arguement"
+#         echo_help
+#         return
+#         ;;
+#     esac
+# fi
 
 # I'm not sure which is appropriate for you system.
 # you can find by uncommenting the followling line
@@ -54,7 +55,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     eval "$(pyenv init -)"
     eval "$(pyenv virtualenv-init -)"
     pyenv activate tiktotube
-    python main.py $hashtag_source
+    python -m app
     pyenv deactivate
 
 # elif [[ "$OSTYPE" == "linux"]]; then
@@ -65,7 +66,7 @@ if [[ "$OSTYPE" == "darwin"* ]]; then
     # for Yurii
     # something like this i assume
     # virtualev activate
-    # python main.py $hastag_source
+    # python app
     # deactivate
 else
     echo "OS Type not recognized will not run"
